@@ -2,6 +2,8 @@
 
 > **No 14-day expiry traps. No sneaky redirect URLs. No monthly subscription ransoms. Just honest, static QR codes that work forever.**
 
+🔗 **Live Web App:** [https://fahmiprasanda123.github.io/qrcode-generator/](https://fahmiprasanda123.github.io/qrcode-generator/)
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Cost: $0](https://img.shields.io/badge/Hosting%20Cost-%240-success.svg)
 ![Permanent: Yes](https://img.shields.io/badge/Expiration-Never-emerald.svg)
@@ -25,8 +27,7 @@ This predatory practice infuriates users across Reddit and Twitter every single 
 * 📶 **Wi-Fi 1-Tap Connect:** Scan and phones immediately show *"Join Network"* with SSID & password.
 * 👤 **vCard / Contact Save:** Encodes full business contact details. Scanners can save you directly to their phone address book.
 * 💬 **WhatsApp Direct Chat:** Direct link to your WhatsApp number with pre-filled messages.
-* 🎨 **Visual Customizer:** Custom QR foreground and background colors, preset luxury themes (Classic, Cyber Emerald, Electric Violet, Ocean Blue).
-* ⭐ **Center Logo & Icons:** Embed preset badges (Wi-Fi, Link, WhatsApp, Star) or upload your custom logo/image.
+* 🎨 **Visual Customizer:** Custom QR foreground and background colors, preset clean themes (Classic, Cyber Emerald, Electric Violet, Ocean Blue).
 * 🖨️ **Print-Ready Export:** Download high-resolution PNG (up to 2048px, 300 DPI) and Vector SVG for graphic designers and billboards.
 * 🔒 **100% Client-Side Privacy:** Your Wi-Fi passwords and personal details never leave your browser.
 
