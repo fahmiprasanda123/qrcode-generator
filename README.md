@@ -1,8 +1,8 @@
-# 🛡️ HonestQR — 100% Free, Permanent, Non-Expiring QR Code Generator
+# HonestQR: Free, Permanent, Non-Expiring QR Code Generator
 
 > **No 14-day expiry traps. No sneaky redirect URLs. No monthly subscription ransoms. Just honest, static QR codes that work forever.**
 
-🔗 **Live Web App:** [https://fahmiprasanda123.github.io/qrcode-generator/](https://fahmiprasanda123.github.io/qrcode-generator/)
+**Live Web App:** [https://fahmiprasanda123.github.io/qrcode-generator/](https://fahmiprasanda123.github.io/qrcode-generator/)
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Cost: $0](https://img.shields.io/badge/Hosting%20Cost-%240-success.svg)
@@ -10,26 +10,26 @@
 
 ---
 
-## 🌟 The Global Problem We Solve
+## The Problem We Solve
 
 Millions of restaurants, small businesses, couples planning weddings, and event organizers search Google for *"Free QR Code Generator"*. 
-Popular top-ranking sites allow them to create a QR code for free, but sneakily encode a **redirect link** (e.g. `qr-code.me/x9f2`). 
+Popular top-ranking sites allow them to create a QR code for free, but sneakily encode a **redirect link** (such as `qr-code.me/x9f2`). 
 
-**Two weeks later, after 500 restaurant menus or wedding invitations have already been printed, the site disables the QR code and demands $29.99/month to keep it working!**
+**Two weeks later, after 500 restaurant menus or wedding invitations have already been printed, the site disables the QR code and demands $29.99/month to keep it working.**
 
-This predatory practice infuriates users across Reddit and Twitter every single day.
+This predatory practice disrupts small businesses and events worldwide.
 
 ---
 
-## 🚀 Why HonestQR is Different
+## Why HonestQR is Different
 
-* 🛡️ **Permanent & Non-Expiring:** Encodes your raw data directly into the QR matrix. There is no middleman server. It is mathematically impossible for the QR code to expire.
-* 📶 **Wi-Fi 1-Tap Connect:** Scan and phones immediately show *"Join Network"* with SSID & password.
-* 👤 **vCard / Contact Save:** Encodes full business contact details. Scanners can save you directly to their phone address book.
-* 💬 **WhatsApp Direct Chat:** Direct link to your WhatsApp number with pre-filled messages.
-* 🎨 **Visual Customizer:** Custom QR foreground and background colors, preset clean themes (Classic, Cyber Emerald, Electric Violet, Ocean Blue).
-* 🖨️ **Print-Ready Export:** Download high-resolution PNG (up to 2048px, 300 DPI) and Vector SVG for graphic designers and billboards.
-* 🔒 **100% Client-Side Privacy:** Your Wi-Fi passwords and personal details never leave your browser.
+* **Permanent & Non-Expiring:** Encodes your raw data directly into the QR matrix. There is no middleman server. It is mathematically impossible for the QR code to expire.
+* **Wi-Fi 1-Tap Connect:** Scan and phones immediately show *"Join Network"* with SSID & password.
+* **vCard Contact Save:** Encodes business contact details. Scanners can save you directly to their phone address book.
+* **WhatsApp Direct Chat:** Direct link to your WhatsApp number with pre-filled messages.
+* **Visual Customizer:** Custom QR foreground and background colors, clean preset palettes.
+* **Print-Ready Export:** Download high-resolution PNG (up to 2048px, 300 DPI) and Vector SVG for graphic designers and signage.
+* **100% Client-Side Privacy:** Your Wi-Fi passwords and personal details never leave your browser.
 
 ---
 

@@ -1,38 +1,42 @@
 /**
- * HonestQR — 100% Free, Non-Expiring QR Code Generator
- * Pure QR Code Matrix (No Center Logo Obstruction)
- * No Redirects. No Expiry. 100% Client-Side.
+ * HonestQR - Permanent, Non-Expiring QR Code Generator
+ * In-browser client-side engine (Zero Redirects, Zero Server Traps)
  * Author: Fahmi Prasanda
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
+  // Elements: Navigation & Theme
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeIconSun = document.getElementById('theme-icon-sun');
+  const themeIconMoon = document.getElementById('theme-icon-moon');
+
+  // Elements: Type Selection & Forms
   const typeTabs = document.querySelectorAll('.type-tab');
   const formPanes = document.querySelectorAll('.form-pane');
   const rawPayloadEl = document.getElementById('raw-payload');
   const qrCanvas = document.getElementById('qr-canvas');
-  const qrWrapper = document.getElementById('qr-wrapper');
-  const toast = document.getElementById('toast');
+  const qrBox = document.getElementById('qr-canvas-box');
+  const toastBox = document.getElementById('toast');
 
-  // Colors & Theme
+  // Elements: Color Customization
   const qrColorDark = document.getElementById('qr-color-dark');
   const qrColorLight = document.getElementById('qr-color-light');
   const hexDark = document.getElementById('hex-dark');
   const hexLight = document.getElementById('hex-light');
   const presetButtons = document.querySelectorAll('.preset-btn');
 
-  // Sliders
+  // Elements: Sliders
   const qrSizeSlider = document.getElementById('qr-size');
   const valSize = document.getElementById('val-size');
   const qrMarginSlider = document.getElementById('qr-margin');
   const valMargin = document.getElementById('val-margin');
 
-  // Action Buttons
+  // Elements: Actions
   const btnDownloadPng = document.getElementById('btn-download-png');
   const btnDownloadSvg = document.getElementById('btn-download-svg');
   const btnCopyImage = document.getElementById('btn-copy-image');
 
-  // Form inputs
+  // Elements: Form Inputs
   const inputUrl = document.getElementById('input-url');
   
   const wifiSsid = document.getElementById('wifi-ssid');
@@ -59,13 +63,42 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentType = 'url';
   let qrcodeInstance = null;
 
-  // Hidden container for QRCode.js engine
+  // Off-screen container for QRCode.js engine
   const hiddenQrDiv = document.createElement('div');
   hiddenQrDiv.style.display = 'none';
   document.body.appendChild(hiddenQrDiv);
 
   // =========================================================================
-  // Payload Builders
+  // Theme Management (Light / Dark)
+  // =========================================================================
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('honestqr-theme', theme);
+
+    if (theme === 'dark') {
+      if (themeIconSun) themeIconSun.style.display = 'block';
+      if (themeIconMoon) themeIconMoon.style.display = 'none';
+      if (themeToggleBtn) themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      if (themeIconSun) themeIconSun.style.display = 'none';
+      if (themeIconMoon) themeIconMoon.style.display = 'block';
+      if (themeToggleBtn) themeToggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('honestqr-theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // =========================================================================
+  // Payload Builder Pipeline
   // =========================================================================
   function getPayload() {
     switch (currentType) {
@@ -123,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // QR Code Rendering Pipeline (Pure QR Matrix, No Obstructions)
+  // QR Code Rendering Pipeline
   // =========================================================================
   function generateQR() {
     const payload = getPayload();
@@ -142,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         height: exportSize,
         colorDark: darkColor,
         colorLight: lightColor,
-        correctLevel: QRCode.CorrectLevel.M // Standard clean level for pure QR
+        correctLevel: QRCode.CorrectLevel.M
       });
 
       setTimeout(() => {
@@ -152,15 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
         qrCanvas.width = exportSize;
         qrCanvas.height = exportSize;
         const ctx = qrCanvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false; // Crisp pixel perfection
+        ctx.imageSmoothingEnabled = false;
 
         ctx.fillStyle = lightColor;
         ctx.fillRect(0, 0, exportSize, exportSize);
 
-        // Draw pure, pristine QR code matrix
         ctx.drawImage(sourceCanvas, 0, 0, exportSize, exportSize);
-
-        qrWrapper.style.backgroundColor = lightColor;
+        if (qrBox) {
+          qrBox.style.backgroundColor = lightColor;
+        }
       }, 25);
     } catch (err) {
       console.error('Error generating QR code:', err);
@@ -221,6 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Slider adjustments
   qrSizeSlider.addEventListener('input', () => {
     valSize.textContent = `${qrSizeSlider.value} px`;
     generateQR();
@@ -231,9 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
     generateQR();
   });
 
-  // Real-time live update on every input keystroke
+  // Real-time input listening
   const allInputs = document.querySelectorAll(
-    '.form-container input, .form-container textarea, .form-container select'
+    '.form-card input, .form-card textarea, .form-card select'
   );
   allInputs.forEach(input => {
     input.addEventListener('input', generateQR);
@@ -241,10 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // Download & Copy Handlers
+  // Export Handlers
   // =========================================================================
 
-  // 1. Download PNG
+  // 1. Download High-Res PNG
   btnDownloadPng.addEventListener('click', () => {
     const link = document.createElement('a');
     link.download = `HonestQR_${currentType}_${Date.now()}.png`;
@@ -252,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    showToast('📥 Downloaded high-resolution PNG!');
+    showToast('Downloaded PNG file.');
   });
 
   // 2. Download Vector SVG
@@ -276,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    showToast('📥 Downloaded Vector SVG!');
+    showToast('Downloaded Vector SVG file.');
   });
 
   // 3. Copy Image to Clipboard
@@ -287,24 +321,25 @@ document.addEventListener('DOMContentLoaded', () => {
         await navigator.clipboard.write([
           new ClipboardItem({ 'image/png': blob })
         ]);
-        showToast('📋 Copied QR Image to clipboard!');
+        showToast('Copied QR image to clipboard.');
       });
     } catch (err) {
-      showToast('❌ Copy not supported in this browser. Please download PNG instead.');
+      showToast('Clipboard copy not supported. Please download PNG.');
     }
   });
 
-  // Helper: Toast Notifications
+  // Toast Notification helper
   let toastTimer;
   function showToast(message) {
+    if (!toastBox) return;
     clearTimeout(toastTimer);
-    toast.textContent = message;
-    toast.classList.add('show');
+    toastBox.textContent = message;
+    toastBox.classList.add('show');
     toastTimer = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2800);
+      toastBox.classList.remove('show');
+    }, 2600);
   }
 
-  // Initial Generation on load
+  // Initial trigger
   generateQR();
 });
